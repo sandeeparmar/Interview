@@ -33,7 +33,7 @@ const HomePage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-[url('/noise.png')] bg-[radial-gradient(circle_at_right_center,_#563277,_#4a378c_30%,_#4172c2_55%,_#32517380)] bg-blend-overlay">
+    <div className="min-h-screen ">
       {/* Hero Section */}
       <section className="bg-violet-950 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

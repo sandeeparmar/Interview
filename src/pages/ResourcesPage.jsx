@@ -1,5 +1,4 @@
 import React from 'react';
-import './ResourcesPage.css';
 
 const ResourcesPage = () => {
   const resources = [
@@ -62,22 +61,22 @@ const ResourcesPage = () => {
           title: 'LeetCode',
           author: 'LeetCode',
           description: 'The most popular coding interview platform',
-          link: 'https://leetcode.com',
-          rating: 5,
+          link: '#',
+          rating: 4,
         },
         {
           title: 'HackerRank',
           author: 'HackerRank',
           description: 'Coding challenges and competitions',
-          link: 'https://hackerrank.com',
-          rating: 4,
+          link: '#',
+          rating: 3,
         },
         {
           title: 'CodeSignal',
           author: 'CodeSignal',
           description: 'Technical interviews and assessments',
-          link: 'https://codesignal.com',
-          rating: 4,
+          link: '#',
+          rating: 3,
         },
       ],
     },
@@ -89,14 +88,14 @@ const ResourcesPage = () => {
           author: 'High Scalability',
           description: 'Real-world system design case studies',
           link: '#',
-          rating: 5,
+          rating: 4,
         },
         {
           title: 'System Design Primer',
           author: 'Donne Martin',
           description: 'GitHub repository with system design resources',
           link: '#',
-          rating: 5,
+          rating: 4,
         },
         {
           title: 'Distributed Systems Course',
@@ -170,34 +169,34 @@ const ResourcesPage = () => {
   ];
 
   return (
-    <div className="resources-page">
-      <div className="page-header">
-        <h1>Interview Resources</h1>
-        <p>Curated resources to help you succeed in your technical interviews</p>
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="text-center mb-10">
+        <h1 className="text-4xl font-bold mb-2">Interview Resources</h1>
+        <p className="text-gray-600">Curated resources to help you succeed in your technical interviews</p>
       </div>
 
       {/* Interview Tips */}
-      <section className="tips-section">
-        <h2>Interview Tips</h2>
-        <div className="tips-grid">
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-4">Interview Tips</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {tips.map((tip, index) => (
-            <div key={index} className="tip-card">
-              <div className="tip-icon">{tip.icon}</div>
-              <h3>{tip.title}</h3>
-              <p>{tip.description}</p>
+            <div key={index} className="bg-white shadow-md rounded-xl p-4 text-center">
+              <div className="text-3xl mb-2">{tip.icon}</div>
+              <h3 className="text-lg font-bold mb-1">{tip.title}</h3>
+              <p className="text-gray-600 text-sm">{tip.description}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Company Guides */}
-      <section className="company-guides-section">
-        <h2>Company Interview Guides</h2>
-        <div className="company-guides">
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-4">Company Interview Guides</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {companyGuides.map((company, index) => (
-            <div key={index} className="company-card">
-              <h3>{company.name}</h3>
-              <div className="company-info">
+            <div key={index} className="bg-white shadow-md rounded-xl p-4">
+              <h3 className="text-lg font-bold mb-2">{company.name}</h3>
+              <div className="text-sm text-gray-700">
                 <p><strong>Focus Areas:</strong> {company.focusAreas.join(', ')}</p>
                 <p><strong>Difficulty:</strong> {company.difficulty}</p>
                 <p><strong>Process:</strong> {company.process}</p>
@@ -208,19 +207,24 @@ const ResourcesPage = () => {
       </section>
 
       {/* Learning Resources */}
-      <section className="learning-resources-section">
-        <h2>Learning Resources</h2>
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Learning Resources</h2>
         {resources.map((category, categoryIndex) => (
-          <div key={categoryIndex} className="resource-category">
-            <h3>{category.category}</h3>
-            <div className="resource-items">
+          <div key={categoryIndex} className="mb-8">
+            <h3 className="text-xl font-bold mb-3">{category.category}</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {category.items.map((item, itemIndex) => (
-                <div key={itemIndex} className="resource-card">
-                  <h4>{item.title}</h4>
-                  <p><strong>Author:</strong> {item.author}</p>
-                  <p>{item.description}</p>
-                  <p><strong>Rating:</strong> {'⭐'.repeat(item.rating)}</p>
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">Learn More</a>
+                <div key={itemIndex} className="bg-white shadow-md rounded-xl p-4">
+                  <h4 className="text-lg font-semibold mb-1">{item.title}</h4>
+                  <p className="text-sm text-gray-700 mb-1"><strong>Author:</strong> {item.author}</p>
+                  <p className="text-sm text-gray-600 mb-1">{item.description}</p>
+                  <p className="text-yellow-500 mb-2">{'⭐'.repeat(item.rating)}</p>
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 text-sm hover:underline"
+                  >Learn More</a>
                 </div>
               ))}
             </div>
