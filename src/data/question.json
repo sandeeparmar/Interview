@@ -1,0 +1,832 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "title": "Two Sum",
+      "category": "Arrays",
+      "difficulty": "Easy",
+      "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+      "examples": [
+        {
+          "input": "nums = [2,7,11,15], target = 9",
+          "output": "[0,1]",
+          "explanation": "Because nums[0] + nums[1] == 9, we return [0, 1]."
+        }
+      ],
+      "constraints": [
+        "2 <= nums.length <= 10^4",
+        "-10^9 <= nums[i] <= 10^9",
+        "-10^9 <= target <= 10^9",
+        "Only one valid answer exists."
+      ],
+      "hints": [
+        "Use a hash map to store complements",
+        "One-pass solution is possible"
+      ],
+      "solution": "function twoSum(nums, target) {\n    const map = new Map();\n    for (let i = 0; i < nums.length; i++) {\n        const complement = target - nums[i];\n        if (map.has(complement)) {\n            return [map.get(complement), i];\n        }\n        map.set(nums[i], i);\n    }\n    return [];\n}",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(n)",
+      "tags": ["hash-map", "array", "two-pointers"],
+      "companies": ["Amazon", "Google", "Microsoft", "Facebook"],
+      "isPremium": false
+    },
+    {
+      "id": 2,
+      "title": "Reverse Linked List",
+      "category": "Linked Lists",
+      "difficulty": "Easy",
+      "description": "Given the head of a singly linked list, reverse the list, and return the reversed list.",
+      "examples": [
+        {
+          "input": "head = [1,2,3,4,5]",
+          "output": "[5,4,3,2,1]",
+          "explanation": "The linked list is reversed."
+        }
+      ],
+      "constraints": [
+        "The number of nodes in the list is the range [0, 5000].",
+        "-5000 <= Node.val <= 5000"
+      ],
+      "hints": [
+        "Use three pointers: prev, current, and next",
+        "Iterative approach is simpler than recursive"
+      ],
+      "solution": "function reverseList(head) {\n    let prev = null;\n    let current = head;\n    \n    while (current !== null) {\n        let next = current.next;\n        current.next = prev;\n        prev = current;\n        current = next;\n    }\n    \n    return prev;\n}",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1)",
+      "tags": ["linked-list", "recursion", "iterative"],
+      "companies": ["Apple", "Amazon", "Microsoft", "Google"],
+      "isPremium": false
+    },
+    {
+      "id": 3,
+      "title": "Valid Parentheses",
+      "category": "Stacks",
+      "difficulty": "Easy",
+      "description": "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.",
+      "examples": [
+        {
+          "input": "s = \"()\"",
+          "output": "true",
+          "explanation": "The parentheses are properly matched."
+        },
+        {
+          "input": "s = \"()[]{}\"",
+          "output": "true",
+          "explanation": "All brackets are properly matched."
+        },
+        {
+          "input": "s = \"(]\"",
+          "output": "false",
+          "explanation": "The brackets are not properly matched."
+        }
+      ],
+      "constraints": [
+        "1 <= s.length <= 10^4",
+        "s consists of parentheses only '()[]{}'."
+      ],
+      "hints": [
+        "Use a stack to keep track of opening brackets",
+        "When you encounter a closing bracket, check if it matches the most recent opening bracket"
+      ],
+      "solution": "function isValid(s) {\n    const stack = [];\n    const map = {\n        ')': '(',\n        '}': '{',\n        ']': '['\n    };\n    \n    for (let char of s) {\n        if (char in map) {\n            if (stack.length === 0 || stack.pop() !== map[char]) {\n                return false;\n            }\n        } else {\n            stack.push(char);\n        }\n    }\n    \n    return stack.length === 0;\n}",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(n)",
+      "tags": ["stack", "string", "parsing"],
+      "companies": ["Amazon", "Microsoft", "Google", "Facebook"],
+      "isPremium": false
+    },
+    {
+      "id": 4,
+      "title": "Binary Tree Inorder Traversal",
+      "category": "Trees",
+      "difficulty": "Easy",
+      "description": "Given the root of a binary tree, return the inorder traversal of its nodes' values.",
+      "examples": [
+        {
+          "input": "root = [1,null,2,3]",
+          "output": "[1,3,2]",
+          "explanation": "Inorder traversal: left, root, right"
+        }
+      ],
+      "constraints": [
+        "The number of nodes in the tree is in the range [0, 100].",
+        "-100 <= Node.val <= 100"
+      ],
+      "hints": [
+        "Use recursion for simple solution",
+        "Iterative solution uses a stack"
+      ],
+      "solution": "function inorderTraversal(root) {\n    const result = [];\n    \n    function inorder(node) {\n        if (node === null) return;\n        inorder(node.left);\n        result.push(node.val);\n        inorder(node.right);\n    }\n    \n    inorder(root);\n    return result;\n}",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(n)",
+      "tags": ["tree", "binary-tree", "recursion", "dfs"],
+      "companies": ["Amazon", "Microsoft", "Google", "Apple"],
+      "isPremium": false
+    },
+    {
+      "id": 5,
+      "title": "Maximum Subarray",
+      "category": "Dynamic Programming",
+      "difficulty": "Medium",
+      "description": "Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.",
+      "examples": [
+        {
+          "input": "nums = [-2,1,-3,4,-1,2,1,-5,4]",
+          "output": "6",
+          "explanation": "[4,-1,2,1] has the largest sum = 6."
+        }
+      ],
+      "constraints": [
+        "1 <= nums.length <= 10^5",
+        "-10^4 <= nums[i] <= 10^4"
+      ],
+      "hints": [
+        "Use Kadane's algorithm",
+        "Keep track of current sum and maximum sum"
+      ],
+      "solution": "function maxSubArray(nums) {\n    let maxSum = nums[0];\n    let currentSum = nums[0];\n    \n    for (let i = 1; i < nums.length; i++) {\n        currentSum = Math.max(nums[i], currentSum + nums[i]);\n        maxSum = Math.max(maxSum, currentSum);\n    }\n    \n    return maxSum;\n}",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1)",
+      "tags": ["array", "dynamic-programming", "kadane-algorithm"],
+      "companies": ["Amazon", "Microsoft", "Google", "Facebook", "Apple"],
+      "isPremium": false
+    },
+    {
+      "id": 6,
+      "title": "Climbing Stairs",
+      "category": "Dynamic Programming",
+      "difficulty": "Easy",
+      "description": "You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?",
+      "examples": [
+        {
+          "input": "n = 2",
+          "output": "2",
+          "explanation": "There are two ways to climb to the top: 1. 1 step + 1 step 2. 2 steps"
+        },
+        {
+          "input": "n = 3",
+          "output": "3",
+          "explanation": "There are three ways to climb to the top: 1. 1 step + 1 step + 1 step 2. 1 step + 2 steps 3. 2 steps + 1 step"
+        }
+      ],
+      "constraints": [
+        "1 <= n <= 45"
+      ],
+      "hints": [
+        "This is a Fibonacci sequence problem",
+        "dp[i] = dp[i-1] + dp[i-2]"
+      ],
+      "solution": "function climbStairs(n) {\n    if (n <= 2) return n;\n    \n    let prev2 = 1;\n    let prev1 = 2;\n    \n    for (let i = 3; i <= n; i++) {\n        let current = prev1 + prev2;\n        prev2 = prev1;\n        prev1 = current;\n    }\n    \n    return prev1;\n}",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1)",
+      "tags": ["dynamic-programming", "fibonacci", "math"],
+      "companies": ["Amazon", "Apple", "Adobe", "Microsoft"],
+      "isPremium": false
+    },
+    {
+      "id": 7,
+      "title": "Longest Common Subsequence",
+      "category": "Dynamic Programming",
+      "difficulty": "Medium",
+      "description": "Given two strings text1 and text2, return the length of their longest common subsequence. If there is no common subsequence, return 0.",
+      "examples": [
+        {
+          "input": "text1 = \"abcde\", text2 = \"ace\"",
+          "output": "3",
+          "explanation": "The longest common subsequence is \"ace\" and its length is 3."
+        }
+      ],
+      "constraints": [
+        "1 <= text1.length, text2.length <= 1000",
+        "text1 and text2 consist of only lowercase English characters."
+      ],
+      "hints": [
+        "Use 2D DP table",
+        "If characters match, add 1 to diagonal value"
+      ],
+      "solution": "function longestCommonSubsequence(text1, text2) {\n    const m = text1.length;\n    const n = text2.length;\n    const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(0));\n    \n    for (let i = 1; i <= m; i++) {\n        for (let j = 1; j <= n; j++) {\n            if (text1[i - 1] === text2[j - 1]) {\n                dp[i][j] = dp[i - 1][j - 1] + 1;\n            } else {\n                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);\n            }\n        }\n    }\n    \n    return dp[m][n];\n}",
+      "timeComplexity": "O(m*n)",
+      "spaceComplexity": "O(m*n)",
+      "tags": ["dynamic-programming", "string", "lcs"],
+      "companies": ["Google", "Amazon", "Microsoft", "Facebook"],
+      "isPremium": false
+    },
+    {
+      "id": 8,
+      "title": "Merge Two Sorted Lists",
+      "category": "Linked Lists",
+      "difficulty": "Easy",
+      "description": "You are given the heads of two sorted linked lists list1 and list2. Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.",
+      "examples": [
+        {
+          "input": "list1 = [1,2,4], list2 = [1,3,4]",
+          "output": "[1,1,2,3,4,4]",
+          "explanation": "The merged list is sorted."
+        }
+      ],
+      "constraints": [
+        "The number of nodes in both lists is in the range [0, 50].",
+        "-100 <= Node.val <= 100",
+        "Both list1 and list2 are sorted in non-decreasing order."
+      ],
+      "hints": [
+        "Use a dummy node to simplify the logic",
+        "Compare values and link the smaller one"
+      ],
+      "solution": "function mergeTwoLists(list1, list2) {\n    const dummy = new ListNode(0);\n    let current = dummy;\n    \n    while (list1 !== null && list2 !== null) {\n        if (list1.val <= list2.val) {\n            current.next = list1;\n            list1 = list1.next;\n        } else {\n            current.next = list2;\n            list2 = list2.next;\n        }\n        current = current.next;\n    }\n    \n    current.next = list1 || list2;\n    return dummy.next;\n}",
+      "timeComplexity": "O(m + n)",
+      "spaceComplexity": "O(1)",
+      "tags": ["linked-list", "merge", "two-pointers"],
+      "companies": ["Amazon", "Microsoft", "Apple", "Google"],
+      "isPremium": false
+    },
+    {
+      "id": 9,
+      "title": "Binary Search",
+      "category": "Binary Search",
+      "difficulty": "Easy",
+      "description": "Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums. If target exists, then return its index. Otherwise, return -1.",
+      "examples": [
+        {
+          "input": "nums = [-1,0,3,5,9,12], target = 9",
+          "output": "4",
+          "explanation": "9 exists in nums and its index is 4"
+        }
+      ],
+      "constraints": [
+        "1 <= nums.length <= 10^4",
+        "-10^4 < nums[i], target < 10^4",
+        "All the integers in nums are unique.",
+        "nums is sorted in ascending order."
+      ],
+      "hints": [
+        "Use left and right pointers",
+        "Check middle element and adjust search space"
+      ],
+      "solution": "function search(nums, target) {\n    let left = 0;\n    let right = nums.length - 1;\n    \n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n        \n        if (nums[mid] === target) {\n            return mid;\n        } else if (nums[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n    \n    return -1;\n}",
+      "timeComplexity": "O(log n)",
+      "spaceComplexity": "O(1)",
+      "tags": ["binary-search", "array", "search"],
+      "companies": ["Amazon", "Microsoft", "Google", "Apple"],
+      "isPremium": false
+    },
+    {
+      "id": 10,
+      "title": "Longest Palindromic Substring",
+      "category": "Strings",
+      "difficulty": "Medium",
+      "description": "Given a string s, return the longest palindromic substring in s.",
+      "examples": [
+        {
+          "input": "s = \"babad\"",
+          "output": "\"bab\"",
+          "explanation": "\"aba\" is also a valid answer."
+        },
+        {
+          "input": "s = \"cbbd\"",
+          "output": "\"bb\"",
+          "explanation": "The longest palindrome is \"bb\"."
+        }
+      ],
+      "constraints": [
+        "1 <= s.length <= 1000",
+        "s consist of only digits and English letters."
+      ],
+      "hints": [
+        "Expand around centers",
+        "Consider both odd and even length palindromes"
+      ],
+      "solution": "function longestPalindrome(s) {\n    if (s.length <= 1) return s;\n    \n    let start = 0;\n    let maxLen = 1;\n    \n    function expandAroundCenter(left, right) {\n        while (left >= 0 && right < s.length && s[left] === s[right]) {\n            const len = right - left + 1;\n            if (len > maxLen) {\n                maxLen = len;\n                start = left;\n            }\n            left--;\n            right++;\n        }\n    }\n    \n    for (let i = 0; i < s.length; i++) {\n        expandAroundCenter(i, i);     // odd length\n        expandAroundCenter(i, i + 1); // even length\n    }\n    \n    return s.substring(start, start + maxLen);\n}",
+      "timeComplexity": "O(n^2)",
+      "spaceComplexity": "O(1)",
+      "tags": ["string", "palindrome", "expand-around-center"],
+      "companies": ["Amazon", "Microsoft", "Google", "Facebook"],
+      "isPremium": false
+    },
+    {
+      "id": 11,
+      "title": "Group Anagrams",
+      "category": "Hash Tables",
+      "difficulty": "Medium",
+      "description": "Given an array of strings strs, group the anagrams together. You can return the answer in any order.",
+      "examples": [
+        {
+          "input": "strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+          "output": "[[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]",
+          "explanation": "Anagrams are grouped together."
+        }
+      ],
+      "constraints": [
+        "1 <= strs.length <= 10^4",
+        "0 <= strs[i].length <= 100",
+        "strs[i] consists of lowercase English letters only."
+      ],
+      "hints": [
+        "Use sorted string as key",
+        "Group strings with same sorted key"
+      ],
+      "solution": "function groupAnagrams(strs) {\n    const map = new Map();\n    \n    for (const str of strs) {\n        const sorted = str.split('').sort().join('');\n        \n        if (!map.has(sorted)) {\n            map.set(sorted, []);\n        }\n        map.get(sorted).push(str);\n    }\n    \n    return Array.from(map.values());\n}",
+      "timeComplexity": "O(n * k log k)",
+      "spaceComplexity": "O(n * k)",
+      "tags": ["hash-table", "string", "anagram", "sorting"],
+      "companies": ["Amazon", "Facebook", "Google", "Microsoft"],
+      "isPremium": false
+    },
+    {
+      "id": 12,
+      "title": "3Sum",
+      "category": "Two Pointers",
+      "difficulty": "Medium",
+      "description": "Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.",
+      "examples": [
+        {
+          "input": "nums = [-1,0,1,2,-1,-4]",
+          "output": "[[-1,-1,2],[-1,0,1]]",
+          "explanation": "The distinct triplets are [-1,-1,2] and [-1,0,1]."
+        }
+      ],
+      "constraints": [
+        "3 <= nums.length <= 3000",
+        "-10^5 <= nums[i] <= 10^5"
+      ],
+      "hints": [
+        "Sort the array first",
+        "Use two pointers technique",
+        "Skip duplicates to avoid duplicate triplets"
+      ],
+      "solution": "function threeSum(nums) {\n    nums.sort((a, b) => a - b);\n    const result = [];\n    \n    for (let i = 0; i < nums.length - 2; i++) {\n        if (i > 0 && nums[i] === nums[i - 1]) continue;\n        \n        let left = i + 1;\n        let right = nums.length - 1;\n        \n        while (left < right) {\n            const sum = nums[i] + nums[left] + nums[right];\n            \n            if (sum === 0) {\n                result.push([nums[i], nums[left], nums[right]]);\n                while (left < right && nums[left] === nums[left + 1]) left++;\n                while (left < right && nums[right] === nums[right - 1]) right--;\n                left++;\n                right--;\n            } else if (sum < 0) {\n                left++;\n            } else {\n                right--;\n            }\n        }\n    }\n    \n    return result;\n}",
+      "timeComplexity": "O(n^2)",
+      "spaceComplexity": "O(1)",
+      "tags": ["two-pointers", "array", "sorting"],
+      "companies": ["Amazon", "Facebook", "Google", "Microsoft"],
+      "isPremium": false
+    },
+    {
+      "id": 13,
+      "title": "Container With Most Water",
+      "category": "Two Pointers",
+      "difficulty": "Medium",
+      "description": "You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]). Find two lines that together with the x-axis form a container that can hold the most water.",
+      "examples": [
+        {
+          "input": "height = [1,8,6,2,5,4,8,3,7]",
+          "output": "49",
+          "explanation": "The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49."
+        }
+      ],
+      "constraints": [
+        "n >= 2",
+        "0 <= height[i] <= 3 * 10^4"
+      ],
+      "hints": [
+        "Use two pointers from both ends",
+        "Move the pointer with smaller height"
+      ],
+      "solution": "function maxArea(height) {\n    let left = 0;\n    let right = height.length - 1;\n    let maxWater = 0;\n    \n    while (left < right) {\n        const width = right - left;\n        const minHeight = Math.min(height[left], height[right]);\n        const water = width * minHeight;\n        maxWater = Math.max(maxWater, water);\n        \n        if (height[left] < height[right]) {\n            left++;\n        } else {\n            right--;\n        }\n    }\n    \n    return maxWater;\n}",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(1)",
+      "tags": ["two-pointers", "array", "greedy"],
+      "companies": ["Amazon", "Facebook", "Google", "Microsoft"],
+      "isPremium": false
+    },
+    {
+      "id": 14,
+      "title": "Validate Binary Search Tree",
+      "category": "Trees",
+      "difficulty": "Medium",
+      "description": "Given the root of a binary tree, determine if it is a valid binary search tree (BST).",
+      "examples": [
+        {
+          "input": "root = [2,1,3]",
+          "output": "true",
+          "explanation": "The tree is a valid BST."
+        },
+        {
+          "input": "root = [5,1,4,null,null,3,6]",
+          "output": "false",
+          "explanation": "The root node's value is 5 but its right child's value is 4."
+        }
+      ],
+      "constraints": [
+        "The number of nodes in the tree is in the range [1, 10^4].",
+        "-2^31 <= Node.val <= 2^31 - 1"
+      ],
+      "hints": [
+        "Use bounds checking",
+        "Pass min and max values down the tree"
+      ],
+      "solution": "function isValidBST(root) {\n    function validate(node, min, max) {\n        if (node === null) return true;\n        \n        if (node.val <= min || node.val >= max) {\n            return false;\n        }\n        \n        return validate(node.left, min, node.val) && \n               validate(node.right, node.val, max);\n    }\n    \n    return validate(root, -Infinity, Infinity);\n}",
+      "timeComplexity": "O(n)",
+      "spaceComplexity": "O(n)",
+      "tags": ["tree", "binary-search-tree", "recursion", "dfs"],
+      "companies": ["Amazon", "Microsoft", "Google", "Facebook"],
+      "isPremium": false
+    },
+    {
+      "id": 15,
+      "title": "Number of Islands",
+      "category": "Graph",
+      "difficulty": "Medium",
+      "description": "Given an m x n 2D binary grid which represents a map of '1's (land) and '0's (water), return the number of islands.",
+      "examples": [
+        {
+          "input": "grid = [[\"1\",\"1\",\"1\",\"1\",\"0\"],[\"1\",\"1\",\"0\",\"1\",\"0\"],[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"0\",\"0\",\"0\",\"0\",\"0\"]]",
+          "output": "1",
+          "explanation": "There is one island in the grid."
+        }
+      ],
+      "constraints": [
+        "m == grid.length",
+        "n == grid[i].length",
+        "1 <= m, n <= 300",
+        "grid[i][j] is '0' or '1'."
+      ],
+      "hints": [
+        "Use DFS or BFS to explore connected components",
+        "Mark visited cells to avoid counting twice"
+      ],
+      "solution": "function numIslands(grid) {\n    if (!grid || grid.length === 0) return 0;\n    \n    const rows = grid.length;\n    const cols = grid[0].length;\n    let count = 0;\n    \n    function dfs(i, j) {\n        if (i < 0 || i >= rows || j < 0 || j >= cols || grid[i][j] === '0') {\n            return;\n        }\n        \n        grid[i][j] = '0'; // Mark as visited\n        \n        dfs(i + 1, j);\n        dfs(i - 1, j);\n        dfs(i, j + 1);\n        dfs(i, j - 1);\n    }\n    \n    for (let i = 0; i < rows; i++) {\n        for (let j = 0; j < cols; j++) {\n            if (grid[i][j] === '1') {\n                count++;\n                dfs(i, j);\n            }\n        }\n    }\n    \n    return count;\n}",
+      "timeComplexity": "O(m * n)",
+      "spaceComplexity": "O(m * n)",
+      "tags": ["graph", "dfs", "bfs", "connected-components"],
+      "companies": ["Amazon", "Google", "Facebook", "Microsoft"],
+      "isPremium": false
+    },
+     {
+      "id": 16,
+      "title": "What is the difference between Process and Thread?",
+      "description": "Explain the key differences between processes and threads in operating systems, including their characteristics, memory usage, and communication mechanisms.",
+      "category": "Operating Systems",
+      "difficulty": "Medium",
+      "tags": ["processes", "threads", "operating-systems", "concurrency"],
+      "examples": [
+        {
+          "input": "Process vs Thread comparison",
+          "output": "Process: Independent memory space, expensive context switching. Thread: Shared memory space, lightweight context switching.",
+          "explanation": "Processes are isolated while threads share resources within a process"
+        }
+      ],
+      "constraints": [
+        "Consider memory isolation",
+        "Discuss communication overhead",
+        "Mention creation and destruction costs"
+      ],
+      "solution": {
+        "approach": "Compare processes and threads across multiple dimensions including memory, communication, overhead, and use cases.",
+        "code": "// Process example\nfork(); // Creates new process with separate memory\n\n// Thread example\npthread_create(&thread, NULL, function, NULL); // Creates thread sharing memory",
+        "timeComplexity": "O(1) for comparison",
+        "spaceComplexity": "O(1) for explanation"
+      },
+      "starterCode": "// Explain the differences between:\n// 1. Memory usage\n// 2. Communication\n// 3. Creation overhead\n// 4. Context switching\n"
+    },
+    {
+      "id": 17,
+      "title": "Explain TCP vs UDP",
+      "description": "Compare and contrast TCP and UDP protocols, including their characteristics, use cases, and when to choose one over the other.",
+      "category": "Computer Networks",
+      "difficulty": "Easy",
+      "tags": ["tcp", "udp", "networking", "protocols"],
+      "examples": [
+        {
+          "input": "Web browsing vs Video streaming",
+          "output": "Web browsing uses TCP for reliability, video streaming may use UDP for speed",
+          "explanation": "TCP ensures data integrity while UDP prioritizes speed"
+        }
+      ],
+      "constraints": [
+        "Consider reliability requirements",
+        "Discuss speed vs accuracy trade-offs",
+        "Mention real-world applications"
+      ],
+      "solution": {
+        "approach": "Compare TCP and UDP across reliability, speed, connection requirements, and typical use cases.",
+        "code": "// TCP characteristics\n// - Connection-oriented\n// - Reliable delivery\n// - Ordered packets\n// - Error checking\n\n// UDP characteristics\n// - Connectionless\n// - Fast delivery\n// - No guaranteed order\n// - Minimal overhead",
+        "timeComplexity": "TCP: Higher overhead, UDP: Lower overhead",
+        "spaceComplexity": "TCP: More header space, UDP: Minimal header"
+      },
+      "starterCode": "// Compare TCP vs UDP:\n// 1. Connection type\n// 2. Reliability\n// 3. Speed\n// 4. Use cases\n"
+    },
+    {
+      "id": 18,
+      "title": "What is a Deadlock?",
+      "description": "Explain what a deadlock is in operating systems, the conditions that lead to deadlock, and strategies to prevent or resolve deadlocks.",
+      "category": "Operating Systems",
+      "difficulty": "Medium",
+      "tags": ["deadlock", "synchronization", "operating-systems", "concurrency"],
+      "examples": [
+        {
+          "input": "Two processes waiting for each other's resources",
+          "output": "Process A holds Resource 1, needs Resource 2. Process B holds Resource 2, needs Resource 1.",
+          "explanation": "Both processes are blocked indefinitely waiting for each other"
+        }
+      ],
+      "constraints": [
+        "Must satisfy all four Coffman conditions",
+        "Consider prevention vs detection strategies",
+        "Discuss real-world scenarios"
+      ],
+      "solution": {
+        "approach": "Explain the four necessary conditions for deadlock and various prevention/resolution strategies.",
+        "code": "// Deadlock conditions:\n// 1. Mutual Exclusion\n// 2. Hold and Wait\n// 3. No Preemption\n// 4. Circular Wait\n\n// Prevention strategies:\n// - Resource ordering\n// - Timeouts\n// - Deadlock detection algorithms",
+        "timeComplexity": "Detection: O(n²), Prevention: O(1)",
+        "spaceComplexity": "O(n) for resource allocation graphs"
+      },
+      "starterCode": "// Explain deadlock:\n// 1. Four necessary conditions\n// 2. Prevention strategies\n// 3. Detection methods\n// 4. Recovery approaches\n"
+    },
+    {
+      "id": 19,
+      "title": "Explain Database ACID Properties",
+      "description": "Describe the ACID properties of database transactions and why they are important for data integrity.",
+      "category": "Database Systems",
+      "difficulty": "Easy",
+      "tags": ["database", "acid", "transactions", "data-integrity"],
+      "examples": [
+        {
+          "input": "Bank transfer transaction",
+          "output": "Money deducted from one account and added to another atomically",
+          "explanation": "Either both operations succeed or both fail, maintaining consistency"
+        }
+      ],
+      "constraints": [
+        "All four properties must be satisfied",
+        "Consider real-world transaction scenarios",
+        "Discuss implementation challenges"
+      ],
+      "solution": {
+        "approach": "Explain each ACID property with examples and discuss how databases implement them.",
+        "code": "// ACID Properties:\n// Atomicity: All or nothing\n// Consistency: Valid state transitions\n// Isolation: Concurrent transaction independence\n// Durability: Persistent changes\n\n// Example:\nBEGIN TRANSACTION;\nUPDATE accounts SET balance = balance - 100 WHERE id = 1;\nUPDATE accounts SET balance = balance + 100 WHERE id = 2;\nCOMMIT;",
+        "timeComplexity": "Depends on locking mechanism",
+        "spaceComplexity": "O(1) for transaction log entry"
+      },
+      "starterCode": "// Explain ACID:\n// A - Atomicity\n// C - Consistency\n// I - Isolation\n// D - Durability\n"
+    },
+    {
+      "id": 20,
+      "title": "What is Virtual Memory?",
+      "description": "Explain the concept of virtual memory, how it works, and its benefits in modern operating systems.",
+      "category": "Operating Systems",
+      "difficulty": "Medium",
+      "tags": ["virtual-memory", "paging", "operating-systems", "memory-management"],
+      "examples": [
+        {
+          "input": "Program requiring 8GB RAM on 4GB system",
+          "output": "Virtual memory allows program to run by using disk space as extended memory",
+          "explanation": "Pages are swapped between RAM and disk as needed"
+        }
+      ],
+      "constraints": [
+        "Consider page size and page table overhead",
+        "Discuss memory mapping and address translation",
+        "Mention page replacement algorithms"
+      ],
+      "solution": {
+        "approach": "Explain virtual memory concept, address translation, paging, and benefits.",
+        "code": "// Virtual Memory Components:\n// - Page Table: Virtual to Physical mapping\n// - TLB: Translation Lookaside Buffer\n// - Page Replacement: LRU, FIFO, etc.\n\n// Address Translation:\n// Virtual Address = Page Number + Offset\n// Physical Address = Frame Number + Offset",
+        "timeComplexity": "O(1) with TLB hit, O(2) with TLB miss",
+        "spaceComplexity": "O(n) for page table"
+      },
+      "starterCode": "// Explain Virtual Memory:\n// 1. Address translation\n// 2. Paging mechanism\n// 3. Benefits and overhead\n// 4. Page replacement algorithms\n"
+    },
+    {
+      "id": 21,
+      "title": "What is SQL Injection?",
+      "description": "Explain what SQL injection is, how it works, and methods to prevent it in web applications.",
+      "category": "Web Security",
+      "difficulty": "Easy",
+      "tags": ["security", "sql-injection", "web-security", "database"],
+      "examples": [
+        {
+          "input": "User input: '; DROP TABLE users; --",
+          "output": "Malicious SQL executed if not properly sanitized",
+          "explanation": "Attacker injects SQL code through user input fields"
+        }
+      ],
+      "constraints": [
+        "Consider different types of SQL injection",
+        "Discuss both detection and prevention",
+        "Mention real-world impact"
+      ],
+      "solution": {
+        "approach": "Explain SQL injection attack vectors and comprehensive prevention strategies.",
+        "code": "// Vulnerable code:\nString query = \"SELECT * FROM users WHERE name = '\" + userInput + \"'\";\n\n// Safe code with prepared statements:\nPreparedStatement stmt = connection.prepareStatement(\"SELECT * FROM users WHERE name = ?\");\nstmt.setString(1, userInput);",
+        "timeComplexity": "O(1) for prevention",
+        "spaceComplexity": "O(1) for parameterized queries"
+      },
+      "starterCode": "// Explain SQL Injection:\n// 1. Attack mechanism\n// 2. Types of injection\n// 3. Prevention methods\n// 4. Best practices\n"
+    },
+    {
+      "id": 22,
+      "title": "Explain REST API Principles",
+      "description": "Describe the principles of REST (Representational State Transfer) and what makes an API RESTful.",
+      "category": "Web Development",
+      "difficulty": "Medium",
+      "tags": ["rest", "api", "web-services", "http"],
+      "examples": [
+        {
+          "input": "CRUD operations on user resource",
+          "output": "GET /users, POST /users, PUT /users/123, DELETE /users/123",
+          "explanation": "Each HTTP method corresponds to a specific operation"
+        }
+      ],
+      "constraints": [
+        "Must follow REST architectural constraints",
+        "Consider HTTP methods and status codes",
+        "Discuss stateless communication"
+      ],
+      "solution": {
+        "approach": "Explain the six REST constraints and how they apply to API design.",
+        "code": "// REST Principles:\n// 1. Stateless\n// 2. Client-Server\n// 3. Cacheable\n// 4. Layered System\n// 5. Code on Demand (optional)\n// 6. Uniform Interface\n\n// RESTful endpoints:\nGET /api/users        // Get all users\nGET /api/users/123    // Get specific user\nPOST /api/users       // Create new user\nPUT /api/users/123    // Update user\nDELETE /api/users/123 // Delete user",
+        "timeComplexity": "O(1) for endpoint design",
+        "spaceComplexity": "O(1) for stateless design"
+      },
+      "starterCode": "// Explain REST:\n// 1. Six architectural constraints\n// 2. HTTP methods usage\n// 3. Resource naming\n// 4. Status codes\n"
+    },
+    {
+      "id": 23,
+      "title": "What is Big O Notation?",
+      "description": "Explain Big O notation, its purpose, and how to analyze the time and space complexity of algorithms.",
+      "category": "Algorithm Analysis",
+      "difficulty": "Easy",
+      "tags": ["big-o", "complexity", "algorithms", "analysis"],
+      "examples": [
+        {
+          "input": "Nested loop algorithm",
+          "output": "O(n²) time complexity",
+          "explanation": "Inner loop runs n times for each of n iterations of outer loop"
+        }
+      ],
+      "constraints": [
+        "Consider worst-case scenarios",
+        "Focus on dominant terms",
+        "Ignore constant factors"
+      ],
+      "solution": {
+        "approach": "Explain Big O notation rules and common complexity classes with examples.",
+        "code": "// Common Big O complexities:\n// O(1) - Constant time\n// O(log n) - Logarithmic\n// O(n) - Linear\n// O(n log n) - Linearithmic\n// O(n²) - Quadratic\n// O(2^n) - Exponential\n\n// Example analysis:\nfor (int i = 0; i < n; i++) {        // O(n)\n    for (int j = 0; j < n; j++) {    // O(n)\n        // O(1) operation\n    }\n} // Overall: O(n²)",
+        "timeComplexity": "Varies by algorithm",
+        "spaceComplexity": "Varies by algorithm"
+      },
+      "starterCode": "// Explain Big O:\n// 1. Definition and purpose\n// 2. Common complexity classes\n// 3. Analysis techniques\n// 4. Best, average, worst case\n"
+    },
+    {
+      "id": 24,
+      "title": "What is a Hash Table?",
+      "description": "Explain how hash tables work, including hash functions, collision resolution, and their time complexity characteristics.",
+      "category": "Data Structures",
+      "difficulty": "Medium",
+      "tags": ["hash-table", "data-structures", "hashing", "collision-resolution"],
+      "examples": [
+        {
+          "input": "Insert key-value pair ('apple', 5)",
+          "output": "Hash function maps 'apple' to index 3, store value 5 at index 3",
+          "explanation": "Hash function converts key to array index for O(1) access"
+        }
+      ],
+      "constraints": [
+        "Consider collision handling strategies",
+        "Discuss load factor impact",
+        "Mention hash function quality"
+      ],
+      "solution": {
+        "approach": "Explain hash table structure, hash functions, collision resolution methods, and performance characteristics.",
+        "code": "// Hash Table Implementation:\nclass HashTable {\n    constructor(size) {\n        this.size = size;\n        this.table = new Array(size);\n    }\n    \n    hash(key) {\n        let hash = 0;\n        for (let i = 0; i < key.length; i++) {\n            hash += key.charCodeAt(i);\n        }\n        return hash % this.size;\n    }\n    \n    set(key, value) {\n        const index = this.hash(key);\n        this.table[index] = [key, value];\n    }\n    \n    get(key) {\n        const index = this.hash(key);\n        return this.table[index] ? this.table[index][1] : null;\n    }\n}",
+        "timeComplexity": "O(1) average, O(n) worst case",
+        "spaceComplexity": "O(n) for storage"
+      },
+      "starterCode": "// Explain Hash Tables:\n// 1. Hash function design\n// 2. Collision resolution\n// 3. Load factor considerations\n// 4. Performance characteristics\n"
+    },
+    {
+      "id": 25,
+      "title": "Explain Database Normalization",
+      "description": "Describe database normalization, its forms (1NF, 2NF, 3NF), and why it's important for database design.",
+      "category": "Database Systems",
+      "difficulty": "Hard",
+      "tags": ["database", "normalization", "database-design", "relational-model"],
+      "examples": [
+        {
+          "input": "Unnormalized table with repeating groups",
+          "output": "Separate tables linked by foreign keys",
+          "explanation": "Eliminates redundancy and ensures data integrity"
+        }
+      ],
+      "constraints": [
+        "Must satisfy each normal form progressively",
+        "Consider trade-offs with denormalization",
+        "Discuss functional dependencies"
+      ],
+      "solution": {
+        "approach": "Explain each normal form with examples and the process of normalizing a database schema.",
+        "code": "-- 1NF: Atomic values, no repeating groups\n-- Before 1NF:\nCREATE TABLE students (\n    id INT,\n    name VARCHAR(100),\n    courses VARCHAR(500)  -- 'Math, Physics, Chemistry'\n);\n\n-- After 1NF:\nCREATE TABLE students (\n    id INT PRIMARY KEY,\n    name VARCHAR(100)\n);\n\nCREATE TABLE student_courses (\n    student_id INT,\n    course VARCHAR(100),\n    FOREIGN KEY (student_id) REFERENCES students(id)\n);",
+        "timeComplexity": "O(1) for normalized queries",
+        "spaceComplexity": "Reduced redundancy"
+      },
+      "starterCode": "// Explain Database Normalization:\n// 1. First Normal Form (1NF)\n// 2. Second Normal Form (2NF)\n// 3. Third Normal Form (3NF)\n// 4. Benefits and trade-offs\n"
+    },
+    {
+      "id": 26,
+      "title": "What is a Compiler vs Interpreter?",
+      "description": "Explain the differences between compilers and interpreters, their advantages and disadvantages, and examples of each.",
+      "category": "Programming Languages",
+      "difficulty": "Easy",
+      "tags": ["compiler", "interpreter", "programming-languages", "translation"],
+      "examples": [
+        {
+          "input": "C++ code compilation vs Python code execution",
+          "output": "C++ compiled to machine code, Python interpreted line by line",
+          "explanation": "Different approaches to code execution with different trade-offs"
+        }
+      ],
+      "constraints": [
+        "Consider execution speed vs development speed",
+        "Discuss error detection timing",
+        "Mention hybrid approaches"
+      ],
+      "solution": {
+        "approach": "Compare compilers and interpreters across multiple dimensions including speed, portability, and debugging.",
+        "code": "// Compiler process:\n// Source Code → Lexical Analysis → Syntax Analysis → \n// Semantic Analysis → Code Generation → Machine Code\n\n// Interpreter process:\n// Source Code → Parse → Execute (line by line)\n\n// Examples:\n// Compiled: C, C++, Rust, Go\n// Interpreted: Python, JavaScript, Ruby\n// Hybrid: Java (bytecode), C# (bytecode)",
+        "timeComplexity": "Compiler: O(n) compilation + O(1) execution, Interpreter: O(n) per execution",
+        "spaceComplexity": "Compiler: More space for object files, Interpreter: Less storage needed"
+      },
+      "starterCode": "// Compare Compiler vs Interpreter:\n// 1. Translation process\n// 2. Execution speed\n// 3. Development workflow\n// 4. Error detection\n"
+    },
+    {
+      "id": 27,
+      "title": "Explain HTTP Status Codes",
+      "description": "Describe the different categories of HTTP status codes and what the most common ones mean.",
+      "category": "Web Development",
+      "difficulty": "Easy",
+      "tags": ["http", "status-codes", "web-development", "networking"],
+      "examples": [
+        {
+          "input": "Client requests non-existent resource",
+          "output": "Server returns 404 Not Found",
+          "explanation": "404 indicates the requested resource could not be found"
+        }
+      ],
+      "constraints": [
+        "Cover all five categories (1xx-5xx)",
+        "Focus on most commonly used codes",
+        "Explain appropriate usage scenarios"
+      ],
+      "solution": {
+        "approach": "Categorize HTTP status codes and explain the meaning and usage of common codes.",
+        "code": "// HTTP Status Code Categories:\n// 1xx - Informational (100 Continue, 101 Switching Protocols)\n// 2xx - Success (200 OK, 201 Created, 204 No Content)\n// 3xx - Redirection (301 Moved Permanently, 302 Found, 304 Not Modified)\n// 4xx - Client Error (400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found)\n// 5xx - Server Error (500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable)\n\n// Common usage:\nif (user.isAuthenticated()) {\n    return response.status(200).json(data);\n} else {\n    return response.status(401).json({ error: 'Unauthorized' });\n}",
+        "timeComplexity": "O(1) for status code lookup",
+        "spaceComplexity": "O(1) for status code storage"
+      },
+      "starterCode": "// Explain HTTP Status Codes:\n// 1xx - Informational\n// 2xx - Success\n// 3xx - Redirection\n// 4xx - Client Error\n// 5xx - Server Error\n"
+    }
+
+
+  ],
+  "categories": [
+    "Arrays",
+    "Strings",
+    "Linked Lists",
+    "Trees",
+    "Graphs",
+    "Dynamic Programming",
+    "Hash Tables",
+    "Stacks",
+    "Queues",
+    "Binary Search",
+    "Two Pointers",
+    "Sliding Window",
+    "Backtracking",
+    "Greedy",
+    "Bit Manipulation",
+    "Math",
+    "Sorting",
+    "Heap" ,
+    "Cs Fundamental"
+  ],
+  "difficulties": [
+    "Easy",
+    "Medium",
+    "Hard"
+  ],
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Facebook",
+    "Apple",
+    "Netflix",
+    "Uber",
+    "Airbnb",
+    "LinkedIn",
+    "Twitter",
+    "Salesforce",
+    "Oracle",
+    "Adobe",
+    "Intel",
+    "Nvidia"
+  ],
+  "stats": {
+    "totalQuestions": 15,
+    "easyQuestions": 6,
+    "mediumQuestions": 9,
+    "hardQuestions": 0
+  }
+}

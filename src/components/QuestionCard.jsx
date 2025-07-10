@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Editor from './Editor'
 
 const QuestionCard = ({ question }) => {
   const getDifficultyColor = (difficulty) => {
@@ -54,12 +55,13 @@ const QuestionCard = ({ question }) => {
         >
           View Details
         </Link>
-        <button 
+       <Link
+          to={`/question/${question.id}/practice`}
           className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors text-sm font-medium"
-          onClick={() => console.log('Practice mode for:', question.id)}
         >
-          Practice
-        </button>
+          Solution
+        </Link>
+
       </div>
     </div>
   )
