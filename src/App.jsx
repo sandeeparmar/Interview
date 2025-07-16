@@ -1,11 +1,11 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import HomePage from './pages/HomePage'
-import ResourcesPage from './pages/ResourcesPage'
-import QuestionDetailPage from './pages/QuestionDetailPage'
-import QuestionListPage from './pages/QuestionListPage'
+import Navbar from './components/Navbar.jsx'
+import Footer from './components/Footer.jsx'
+import HomePage from './pages/HomePage.jsx'
+import ResourcesPage from './pages/ResourcesPage.jsx'
+import QuestionDetailPage from './pages/QuestionDetailPage.jsx'
+import QuestionListPage from './pages/QuestionListPage.jsx'
 
 function App() {
   return (

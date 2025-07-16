@@ -48,7 +48,7 @@ const Footer = () => {
 
                     {/* <Resume className="h-4 w-4 text-gray-600" />  */}
                     <div className="w-10 h-10 bg-gray-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <a href="" >
+                      <a href="#" >
                          <NotebookText className="h-4 w-4 text-gray-600 hover:text-red-900 transition-colors" />  
                       </a>
                   </div>
