@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 
 const HomePage = () => {
   const stats = [
-    { label: 'Total Questions', value: '500+' },
-    { label: 'Categories', value: '12' },
-    { label: 'Companies', value: '100+' },
-    { label: 'Success Rate', value: '95%' }
+    { label: 'Total Questions', value: '100+' },
+    { label: 'Categories', value: '8' },
+    { label: 'Companies', value: '10+' },
+    { label: 'Success Rate', value: '85%' }
   ]
 
   const features = [
@@ -65,11 +65,22 @@ const HomePage = () => {
 
       {/* Stats Section */}
       <section className="py-16 bg-white">
+        <div class="flex justify-center">
+          <div class="relative group cursor-pointer mb-4">
+            <span class="font-bold text-4xl  text-gray-400  hover:text-blue-600">Achievement</span>
+            <span class="absolute bottom-0 left-0 h-0.5 bg-blue-500 w-0 transition-all duration-300 group-hover:w-full"></span>
+          </div>
+        </div>
+
+
+
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 ">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-blue-50 rounded-lg p-6">
+              <div key={index} className="text-center  hover:rounded-10  hover:shadow-lg 
+              cursor-pointer">
+                <div className="bg-blue-100 rounded-lg p-6">
                   <h3 className="text-3xl font-bold text-blue-600 mb-2">{stat.value}</h3>
                   <p className="text-gray-600">{stat.label}</p>
                 </div>
