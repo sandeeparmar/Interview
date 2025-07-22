@@ -47,7 +47,7 @@ const QuestionListPage = () => {
   const difficulties = ['all', 'easy', 'medium', 'hard']
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-300 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Page Header */}
         <div className="text-center mb-8">
