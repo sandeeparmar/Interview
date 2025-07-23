@@ -56,9 +56,14 @@ const HomePage = () => {
 
           </div>
 
-          <div className='w-1/3 p-3'>
-          <img src="https://media.istockphoto.com/id/1779962110/photo/a-contemporary-artistic-collage-featuring-a-hand-holding-a-trophy.jpg?s=612x612&w=0&k=20&c=TQPcespDD1CpX2nRYxlXGDq57s5zdhBXD3l1t37E4Ks=" alt="WinnerImage" className='rounded-full border-2 border-white'  />
-          </div>   
+          <div className='w-1/3 p-3 hidden md:block'>
+            <img 
+              src="https://media.istockphoto.com/id/1779962110/photo/a-contemporary-artistic-collage-featuring-a-hand-holding-a-trophy.jpg?s=612x612&w=0&k=20&c=TQPcespDD1CpX2nRYxlXGDq57s5zdhBXD3l1t37E4Ks=" 
+              alt="WinnerImage" 
+              className='rounded-full border-2 border-white w-full h-auto object-cover' 
+            />
+          </div>
+          
 
         </div>
       </section>
@@ -108,7 +113,7 @@ const HomePage = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-gray-600 flex w-full px-4 gap-5">
-        <div className="w-2/3 text-center p-3">
+        <div className="w-2/3 text-center p-3 md:block w-full">
           <h2 className="text-3xl font-bold mb-4 text-violet-500">Ready to Start Your Journey?</h2>
           <p className="text-xl m-10 text-white">Join thousands of developers who have successfully prepared for their interviews</p>
           
@@ -118,9 +123,13 @@ const HomePage = () => {
         </div>
         
         {/*Image Section*/}
-         <div className='w-1/3 p-3'>
-          <img src="https://media.istockphoto.com/id/1779962110/photo/a-contemporary-artistic-collage-featuring-a-hand-holding-a-trophy.jpg?s=612x612&w=0&k=20&c=TQPcespDD1CpX2nRYxlXGDq57s5zdhBXD3l1t37E4Ks=" alt="WinnerImage" className='rounded-full border-2 border-white'  />
-          </div>   
+        <div className='w-1/3 p-3 hidden md:block'>
+            <img 
+              src="https://media.istockphoto.com/id/1779962110/photo/a-contemporary-artistic-collage-featuring-a-hand-holding-a-trophy.jpg?s=612x612&w=0&k=20&c=TQPcespDD1CpX2nRYxlXGDq57s5zdhBXD3l1t37E4Ks=" 
+              alt="WinnerImage" 
+              className='rounded-full border-2 border-white w-full h-auto object-cover' 
+            />
+          </div>
 
 
       </section>
