@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 const NavBar = () => {
-  const [currentPath, setCurrentPath] = useState('/'); // Simulating current route
+  const location = useLocation(); // Get current location from React Router
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isActive = (path) => {
-    return currentPath === path;
+    return location.pathname === path; // Use actual pathname from router
   }
 
   const toggleMobileMenu = () => {
@@ -17,16 +18,11 @@ const NavBar = () => {
     setIsMobileMenuOpen(false);
   }
 
-  const handleNavClick = (path) => {
-    setCurrentPath(path);
-    closeMobileMenu();
-  }
-
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/questions', label: 'Questions' },
     { path: '/resources', label: 'Resources' },
-    { path: '/signup', label: 'Guest' }
+    { path: '/SignUp', label: 'Guest' }
   ];
 
   return (
@@ -41,20 +37,20 @@ const NavBar = () => {
                 alt='logo' 
                 className='w-10 h-8 mx-2' 
               />
-              <button 
-                onClick={() => handleNavClick('/')}
+              <Link 
+                to="/"
                 className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors"
               >
                 INTERVIEW
-              </button>
+              </Link>
             </div>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               {navItems.map((item) => (
-                <button 
+                <Link 
                   key={item.path}
-                  onClick={() => handleNavClick(item.path)}
+                  to={item.path}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive(item.path) 
                       ? 'text-blue-600 bg-blue-50' 
@@ -62,7 +58,7 @@ const NavBar = () => {
                   }`}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
             </div>
 
@@ -91,22 +87,22 @@ const NavBar = () => {
           }`}>
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.path}
-                  onClick={() => handleNavClick(item.path)}
-                  className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  to={item.path}
+                  onClick={closeMobileMenu}
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     isActive(item.path)
                       ? 'text-blue-600 bg-blue-50'
                       : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                   }`}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
             </div>
           </div>
         </div>
-
       </nav>
     </div>
   )
