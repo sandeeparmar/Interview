@@ -4,7 +4,8 @@ import CardComponent from '../components/CardComponent';
 
  const LinkComponent = () => {
       return (
-        <div >
+        <div className="flex justify-start sm:justify-center">
+
            <Link 
                 to="/questions" 
                 className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors mx-4"
@@ -118,8 +119,6 @@ const HomePage = () => {
           <p className="text-xl m-10 text-white">Join thousands of developers who have successfully prepared for their interviews</p>
           
           <LinkComponent/>
-
-
         </div>
         
         {/*Image Section*/}
