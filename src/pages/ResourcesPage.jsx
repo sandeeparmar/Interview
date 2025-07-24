@@ -10,7 +10,7 @@ const ResourcesPage = () => {
           author: 'Gayle McDowell',
           description: 'The most comprehensive guide to coding interviews',
           link: '#',
-          rating: 5,
+          rating: 4,
         },
         {
           title: 'System Design Interview',
@@ -65,18 +65,18 @@ const ResourcesPage = () => {
           rating: 4,
         },
         {
-          title: 'HackerRank',
-          author: 'HackerRank',
+          title: 'CodeForces',
+          author: 'CodeForces',
           description: 'Coding challenges and competitions',
           link: '#',
-          rating: 3,
+          rating: 5,
         },
         {
-          title: 'CodeSignal',
-          author: 'CodeSignal',
+          title: 'CodeChef',
+          author: 'CodeChef',
           description: 'Technical interviews and assessments',
           link: '#',
-          rating: 3,
+          rating: 4,
         },
       ],
     },
@@ -169,7 +169,7 @@ const ResourcesPage = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-6xl mx-auto px-4 py-8 bg-gray-100">
       <div className="text-center mb-10">
         <h1 className="text-4xl font-bold mb-2">Interview Resources</h1>
         <p className="text-gray-600">Curated resources to help you succeed in your technical interviews</p>
@@ -177,10 +177,10 @@ const ResourcesPage = () => {
 
       {/* Interview Tips */}
       <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">Interview Tips</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="text-3xl text-blue-800 font-semibold mb-4 border-b-2 inline">Interview Tips</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
           {tips.map((tip, index) => (
-            <div key={index} className="bg-white shadow-md rounded-xl p-4 text-center">
+            <div key={index} className="bg-white shadow-md rounded-xl p-4 text-center border-1">
               <div className="text-3xl mb-2">{tip.icon}</div>
               <h3 className="text-lg font-bold mb-1">{tip.title}</h3>
               <p className="text-gray-600 text-sm">{tip.description}</p>
@@ -191,10 +191,10 @@ const ResourcesPage = () => {
 
       {/* Company Guides */}
       <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">Company Interview Guides</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <h2 className="text-2xl font-semibold mb-4 text-blue-800 inline border-b-2">Company Interview Guides</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
           {companyGuides.map((company, index) => (
-            <div key={index} className="bg-white shadow-md rounded-xl p-4">
+            <div key={index} className="bg-white shadow-md rounded-xl p-4 border-1">
               <h3 className="text-lg font-bold mb-2">{company.name}</h3>
               <div className="text-sm text-gray-700">
                 <p><strong>Focus Areas:</strong> {company.focusAreas.join(', ')}</p>
@@ -208,13 +208,13 @@ const ResourcesPage = () => {
 
       {/* Learning Resources */}
       <section>
-        <h2 className="text-2xl font-semibold mb-4">Learning Resources</h2>
+        <h2 className="text-3xl font-semibold mb-8 inline text-blue-800 border-b-2">Learning Resources</h2>
         {resources.map((category, categoryIndex) => (
           <div key={categoryIndex} className="mb-8">
-            <h3 className="text-xl font-bold mb-3">{category.category}</h3>
+            <h3 className="text-xl font-bold mb-3 mt-4 ">{category.category}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {category.items.map((item, itemIndex) => (
-                <div key={itemIndex} className="bg-white shadow-md rounded-xl p-4">
+                <div key={itemIndex} className="bg-white shadow-md rounded-xl p-4 border-1">
                   <h4 className="text-lg font-semibold mb-1">{item.title}</h4>
                   <p className="text-sm text-gray-700 mb-1"><strong>Author:</strong> {item.author}</p>
                   <p className="text-sm text-gray-600 mb-1">{item.description}</p>
