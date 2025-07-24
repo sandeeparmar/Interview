@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const SignUpPage = () => {
-  const [formData, setFormData] = useState({
+  const navigate  =useNavigate('') ;
+   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
@@ -15,6 +18,16 @@ const SignUpPage = () => {
     gender: '',
     agreeToTerms: false
   });
+
+  const [SignUpSuccessful , setSignUpSuccessful] = useState(false) ; 
+
+   if(SignUpSuccessful){
+    toast.success("Sign Up Successfully...") ;
+   }
+   else {
+    toast.error("Please Sign up first...") ;
+   }
+
 
   const [errors, setErrors] = useState({});
 
@@ -45,11 +58,18 @@ const SignUpPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const NavigateThisPage = () => {
+     setTimeout(() => {
+        navigate('/') ;
+     } , 3000) ; 
+  } 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
       console.log('Form submitted:', formData);
-      alert('Account created successfully!');
+      setSignUpSuccessful(true) ;    
+      NavigateThisPage() ;            
     }
   };
 
@@ -240,7 +260,7 @@ const SignUpPage = () => {
             <div className="pt-4">
               <button 
                 type="submit"
-                onSubmit={handleSubmit}
+                onClick={handleSubmit}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform hover:scale-[1.02]"
               >
                 Create Account
@@ -257,6 +277,7 @@ const SignUpPage = () => {
                   Sign in here
                 </Link>
               </p>
+               <ToastContainer position="top-right" />
             </div>
           </div>
         </div>
