@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import {EMAIL_REGEX} from '../utils/constant.js'
 
 const LoginPage = () => {
     const [email , setEmail] = useState('') ;
     const [error , setError] = useState('') ;
 
-   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+   const emailRegex = {EMAIL_REGEX};
 
     const handleSubmit = (e) => {
         e.preventDefault() ;

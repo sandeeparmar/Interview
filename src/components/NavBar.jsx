@@ -3,11 +3,11 @@ import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 const NavBar = () => {
-  const location = useLocation(); // Get current location from React Router
+  const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isActive = (path) => {
-    return location.pathname === path; // Use actual pathname from router
+    return location.pathname === path; 
   }
 
   const toggleMobileMenu = () => {

@@ -1,5 +1,6 @@
 import React from "react";
 import { Mail, Phone, MapPin, ArrowUp, Linkedin, Twitter, Instagram, Github, NotebookText } from 'lucide-react';
+import { GIF_URL } from "../utils/constant";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -15,7 +16,7 @@ const Footer = () => {
               <div className="flex items-center justify-center lg:justify-start mb-4">
                 <div className="w-12 h-12 rounded-2xl">
                   <img 
-                    src="https://media.tenor.com/VQBGRLEBkE8AAAAj/raintome-fire.gif" 
+                    src={GIF_URL} 
                     alt="Logo" 
                     className="w-8 h-8 object-cover rounded-lg"
                   />
