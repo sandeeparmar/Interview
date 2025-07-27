@@ -1,6 +1,6 @@
 import React from "react";
 import { Mail, Phone, MapPin, ArrowUp, Linkedin, Twitter, Instagram, Github, NotebookText } from 'lucide-react';
-import { GIF_URL } from "../utils/constant";
+import { GIF_URL, GITHUB_URL, LINKDIN_URL, RESUME_LINK  , EMAIL, CALL} from "../utils/constant";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -30,7 +30,7 @@ const Footer = () => {
               <div className="mt-8 flex justify-evenly">
                 <div className="w-10 h-10 bg-gray-100 rounded-2xl flex items-center justify-center flex-shrink-0">
                     <a 
-                        href="https://www.linkedin.com/in/sandeep-parmar-076b15292/" 
+                        href={LINKDIN_URL} 
                         rel="noopener noreferrer"
                       >
                         <Linkedin className="h-4 w-4 text-gray-600  hover:text-blue-600 transition-colors" />
@@ -40,16 +40,16 @@ const Footer = () => {
 
                     <div className="w-10 h-10 bg-gray-100 rounded-2xl flex items-center justify-center flex-shrink-0">
                        <a 
-                        href="https://github.com/sandeeparmar" 
+                        href={GITHUB_URL} 
                         rel="noopener noreferrer"
                       >
       <Github className="h-4 w-4 text-gray-600 hover:text-stone-900 transition-colors" />
                   </a>       
                   </div>
 
-                    {/* <Resume className="h-4 w-4 text-gray-600" />  */}
+                   
                     <div className="w-10 h-10 bg-gray-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <a href="#"  >
+                      <a href={RESUME_LINK}  >
                          <NotebookText className="h-4 w-4 text-gray-600 hover:text-red-900 transition-colors" />  
                       </a>
                   </div>
@@ -57,7 +57,7 @@ const Footer = () => {
 
             </div>
 
-            {/* Future Advancement */}
+            
             <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
               <h3 className="text-lg font-semibold text-gray-900 mb-6 ">Future Advancement</h3>
               <div className="text-gray-600 space-y-4 text-sm">
@@ -66,7 +66,7 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Contact Section */}
+          
             <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
               <h3 className="text-lg font-semibold text-gray-900 mb-6 flex items-center">
                 <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
@@ -86,16 +86,16 @@ const Footer = () => {
                   <div className="w-10 h-10 bg-gray-100 rounded-2xl flex items-center justify-center flex-shrink-0">
                     <Phone className="h-4 w-4 text-gray-600" />
                   </div>
-                  <a href="tel:+919424572893" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                    +91 9424572893
+                  <a href={CALL} className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                    Call 
                   </a>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-10 h-10 bg-gray-100 rounded-2xl flex items-center justify-center flex-shrink-0">
                     <Mail className="h-4 w-4 text-gray-600" />
                   </div>
-                  <a href="mailto:sandeepparmard5656@gmail.com" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-                    sandeepparmard5656@gmail.com
+                  <a href={EMAIL} className="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                   Mail
                   </a>
                 </div>
               </div>
